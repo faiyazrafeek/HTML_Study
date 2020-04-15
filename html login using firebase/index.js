@@ -35,10 +35,12 @@
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     
-    var promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.catch(e => alert(e.message));
-
-    alert('User Registered');
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert('Error: '+errorMessage);
+    }); 
   }
 
   function signIn(){
